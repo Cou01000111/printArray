@@ -1,1 +1,2 @@
-main: main.c printArray.c
+CC = gcc
+main: main.c printArray.c type.c

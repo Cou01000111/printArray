@@ -1,29 +1,49 @@
 #include "printArray.h"
 
 #include <stdio.h>
-void printArray(void *p, int shortCount, int intCount, int floatCount, int doubleCount, int charCount, TYPE type) {
+#include <stdlib.h>
+#include <string.h>
+void printArray(void *p, int shortCount, int intCount, int floatCount, int doubleCount, int charCount, TYPE type, char arrayName[]) {
     switch (type) {
         case SHORT: {
             short *array = (short *)p;
-            PRINTF_FOR(%d, doubleCount);
+            PRINT_ARRAY_FRAME_WRAP(shortCount);
         } break;
         case INT: {
             int *array = (int *)p;
-            PRINTF_FOR(%d, intCount);
+            PRINT_ARRAY_FRAME_WRAP(intCount);
         } break;
         case FLOAT: {
             float *array = (float *)p;
-            PRINTF_FOR(%f, floatCount);
+            PRINT_ARRAY_FRAME_WRAP(floatCount);
         } break;
         case DOUBLE: {
             double *array = (double *)p;
-            PRINTF_FOR(%lf, doubleCount);
+            PRINT_ARRAY_FRAME_WRAP(doubleCount);
         } break;
         case CHAR: {
             char *array = (char *)p;
-            PRINTF_FOR(%c, doubleCount);
+            PRINT_ARRAY_FRAME_WRAP(charCount);
         } break;
         default:
             break;
     }
+}
+
+void printStartLine(char name[], TYPE type) {
+    printf("-");
+    char *typeName = getTypeStr(type);
+    printf("[%s:%s]", name, typeName);
+    for (size_t i = 0; i < LINE_LENGTH - strlen(name) - strlen(typeName) - 3; i++) {
+        printf("-");
+    }
+    free(typeName);
+    printf("\n");
+}
+
+void printEndLine() {
+    for (size_t i = 0; i < LINE_LENGTH; i++) {
+        printf("-");
+    }
+    printf("\n");
 }
