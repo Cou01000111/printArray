@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-char* getTypeStr(TYPE type) {
+char* getTypeStr(PRINT_ARRAY_TYPE type) {
     char* str = (char*)malloc(sizeof(char) * 7);
     switch (type) {
         case SHORT:
@@ -21,17 +21,14 @@ char* getTypeStr(TYPE type) {
         case DOUBLE:
             strcpy(str, "double");
             break;
-        case CHAR:
-            strcpy(str, "char");
-            break;
         default:
             break;
     }
     return str;
 }
 
-char* getTypeFmt(TYPE type) {
-    char* str = (char*)malloc(sizeof(char) * 3);
+char* getTypeFmt(PRINT_ARRAY_TYPE type) {
+    char* str = (char*)malloc(sizeof(char) * 4);
     switch (type) {
         case SHORT:
             strcpy(str, "\%d");
@@ -47,9 +44,6 @@ char* getTypeFmt(TYPE type) {
             break;
         case DOUBLE:
             strcpy(str, "\%lf");
-            break;
-        case CHAR:
-            strcpy(str, "\%c");
             break;
         default:
             break;
