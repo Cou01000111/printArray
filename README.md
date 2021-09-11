@@ -1,4 +1,4 @@
-# printArray
+# print_array
 
 配列の中身をログに出力する`PRINT_ARRAY()`を追加します
 ```
